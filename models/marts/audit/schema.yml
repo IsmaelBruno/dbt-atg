@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: audit_tank_measurements
+    description: >
+      Audit table listing missing keys, unmapped tanks, and product/level recovery actions.
+    columns:
+      - name: id
+        description: Source measurement identifier.
+      - name: depot_code
+        description: Depot code associated with the invalid row.
+      - name: tank_id_raw
+        description: Tank identifier for the invalid row.
+      - name: report_time
+        description: Timestamp attached to the invalid row.
+      - name: source_product
+        description: Original product field from the source table.
+      - name: product
+        description: Canonical product description from the depot/tank reference.
+      - name: standard_product
+        description: Standardized product if mapping exists.
+      - name: tank_reference
+        description: Composite business key used for traceability.
+      - name: product_recovered_from_reference
+        description: Whether the product was recovered from the depot/tank reference.
+      - name: level_recovered_from_product
+        description: Whether a numeric product field was restored as the tank level.
+      - name: audit_reason
+        description: Semicolon-separated data quality issues or recovery actions.

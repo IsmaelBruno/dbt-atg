@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: atg
+    database: "{{ env_var('DBT_DATABASE', 'postgres') }}"
+    schema: public
+    description: Raw ATG tank measurements in PostgreSQL.
+    tables:
+      - name: tank_measurements
+        description: Source table containing raw tank measurement values.

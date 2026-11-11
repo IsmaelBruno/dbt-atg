@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_tank_measurements
+    description: >
+      Source tank measurements with product mapping and a canonical tank reference.
+    columns:
+      - name: id
+        description: Source identifier for the measurement row.
+      - name: depot_code
+        description: Depot code associated with the tank.
+      - name: tank_id_raw
+        description: Raw tank identifier as received in the source data.
+      - name: report_time
+        description: Measurement timestamp.
+      - name: source_product
+        description: Product field as loaded from the source table, including malformed shifted values.
+      - name: product
+        description: Canonical product description from the depot/tank reference.
+      - name: standard_product
+        description: Standardized product code after reference mapping.
+      - name: tank_reference
+        description: Business key built from depot code and tank identifier.
+      - name: level_m
+        description: Tank level in meters, recovered from a numeric product field when shifted.
+      - name: source_level_m
+        description: Original level field from the source table before any recovery.
+      - name: level_recovered_from_product
+        description: True when the source product field was restored as the tank level.
+      - name: net_standard_volume_m3
+        description: Net standard volume in cubic meters, as provided by the source.
+      - name: tov_m3
+        description: Total observed volume in cubic meters, as provided by the source.
+      - name: has_mapping
+        description: Flag indicating whether the depot/tank pair exists in the mapping reference.
+      - name: product_recovered_from_reference
+        description: True when product was missing or inconsistent and replaced with the reference value.

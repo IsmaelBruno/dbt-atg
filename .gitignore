@@ -1,0 +1,7 @@
+.env
+.env.dev
+.env.prod
+!.env.dev.example
+!.env.prod.example
+target/
+dbt_packages/

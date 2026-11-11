@@ -1,0 +1,18 @@
+services:
+  dbt:
+    build: .
+    container_name: dbt-atg
+    working_dir: /usr/app
+    volumes:
+      - .:/usr/app
+      - ./profiles:/root/.dbt
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      DBT_HOST: ${DBT_HOST:-172.23.11.105}
+      DBT_PORT: ${DBT_PORT:-5432}
+      DBT_DATABASE: ${DBT_DATABASE:-postgres}
+      DBT_DEV_USER: ${DBT_DEV_USER:-dbt_dev}
+      DBT_DEV_PASSWORD: ${DBT_DEV_PASSWORD:-}
+      DBT_PROD_USER: ${DBT_PROD_USER:-dbt_prod}
+      DBT_PROD_PASSWORD: ${DBT_PROD_PASSWORD:-}

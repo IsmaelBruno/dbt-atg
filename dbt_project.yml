@@ -1,0 +1,30 @@
+name: dbt_atg
+version: '1.0.0'
+config-version: 2
+
+profile: dbt_atg
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["test"]
+macro-paths: ["macros"]
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  atg_timezone: "Indian/Antananarivo"
+
+models:
+  dbt_atg:
+    stagging:
+      +materialized: view
+    Intermediate:
+      +materialized: view
+    marts:
+      audit:
+        +schema: audit
+        +materialized: table
+      production:
+        +schema: prod
+        +materialized: table

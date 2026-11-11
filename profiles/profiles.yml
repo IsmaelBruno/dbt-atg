@@ -1,0 +1,21 @@
+dbt_atg:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DBT_HOST', '172.23.11.105') }}"
+      port: "{{ env_var('DBT_PORT', '5432') | int }}"
+      user: "{{ env_var('DBT_DEV_USER', 'dbt_dev') }}"
+      password: "{{ env_var('DBT_DEV_PASSWORD', '') }}"
+      dbname: "{{ env_var('DBT_DATABASE', 'postgres') }}"
+      schema: dbt_dev
+      threads: 4
+    prod:
+      type: postgres
+      host: "{{ env_var('DBT_HOST', '172.23.11.105') }}"
+      port: "{{ env_var('DBT_PORT', '5432') | int }}"
+      user: "{{ env_var('DBT_PROD_USER', 'dbt_prod') }}"
+      password: "{{ env_var('DBT_PROD_PASSWORD', '') }}"
+      dbname: "{{ env_var('DBT_DATABASE', 'postgres') }}"
+      schema: dbt_prod
+      threads: 4

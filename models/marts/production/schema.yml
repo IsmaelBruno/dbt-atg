@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: fct_tank_measurements
+    description: >
+      Corrected tank measurements, using the depot/tank reference as the authoritative product source.
+    columns:
+      - name: id
+        description: Source measurement identifier.
+      - name: date
+        description: Measurement date in the configured ATG timezone.
+      - name: heure
+        description: Measurement time in the configured ATG timezone.
+      - name: produit
+        description: Canonical product label, also exposed under the legacy Power BI name.
+      - name: "Niveau"
+        description: Corrected tank level in meters, also exposed under the legacy Power BI name.
+      - name: niveau_diff
+        description: Difference in corrected level from the previous retained hourly measurement for this tank.
+      - name: niveau_diff_mm
+        description: Level difference in millimeters.
+      - name: "Température_moyen"
+        description: Average temperature, also exposed under the legacy Power BI name.
+      - name: "Température_1"
+        description: Temperature sensor 1, also exposed under the legacy Power BI name.
+      - name: volume_standard_net
+        description: Net standard volume, also exposed under the legacy Power BI name.
+      - name: "Entrée_ATG"
+        description: Positive NSV difference multiplied by 1000, following the legacy view calculation.
+      - name: "Sortie_ATG"
+        description: Negative NSV difference multiplied by 1000, following the legacy view calculation.
+      - name: depot_code
+        description: Depot code linked to the measured tank.
+      - name: tank_id_raw
+        description: Raw tank identifier from the source.
+      - name: "Bac_id"
+        description: Source tank identifier, also exposed under the legacy Power BI name.
+      - name: volume_diff
+        description: Difference in net standard volume from the previous retained hourly measurement for this tank.
+      - name: temp_diff
+        description: Difference in average temperature from the previous retained hourly measurement for this tank.
+      - name: tank_reference
+        description: Combined tanker business key.
+      - name: report_time
+        description: Measurement timestamp used for analysis.
+      - name: source_product
+        description: Product field as loaded in the source table, retained for traceability.
+      - name: product
+        description: Product description recovered from the depot/tank reference.
+      - name: standard_product
+        description: Standardized product name after mapping.
+      - name: level_m
+        description: Tank level in meters, as provided by the source.
+      - name: net_standard_volume_m3
+        description: Net standard volume in cubic meters, as provided by the source.
+      - name: tov_m3
+        description: Total observed volume in cubic meters, as provided by the source.
+      - name: has_mapping
+        description: Validation flag indicating that the record has a valid mapping.
+      - name: product_recovered_from_reference
+        description: True when the source product was missing or differed from the reference.
+      - name: level_recovered_from_product
+        description: True when a numeric source product value was restored as the tank level.
